@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sandbox</title>
 </head>
 
@@ -14,13 +14,20 @@
     <script>
         // attch instance to window
         window.proton = new Proton(config);
-        const { trackEventTypes, modelTypes } = window.proton
+        const { trackEventTypes, modelTypes } = window.proton;
         // example of track product
-        proton.trackProduct({ event: trackEventTypes.PRODUCT_CLICK, "model": modelTypes.RECENT, product_id: "1034", });
+        proton.trackProduct({
+            event: trackEventTypes.PRODUCT_CLICK,
+            model: modelTypes.RECENT,
+            product_id: "1034",
+        });
         // example of track login
-        proton.trackLogin("BobSmith123")
+        proton.trackLogin("BobSmith123");
         // example of get recommendation products
-        proton.getRecommendation({ type: modelTypes.SIMILAR, productId: "1-35043-34174" });
+        proton.getRecommendation({
+            type: modelTypes.SIMILAR,
+            productId: "1-35043-34174",
+        });
     </script>
 </body>
 

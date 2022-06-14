@@ -55,7 +55,12 @@ class Proton {
     this.customerId = customerId;
     this.baseURL = `${Proton._GLUON_URL}/${company}`;
     this.fetchCount = fetchCount;
-    this.request = async ({ url, requestOptions, eventName = "" }) => {
+    this.request = async ({
+      url,
+      requestOptions,
+      eventName = "",
+      returnVal = (res) => res,
+    }) => {
       const body = {
         ...requestOptions.body,
         company,
@@ -82,8 +87,9 @@ class Proton {
         Proton._LOG({
           event: eventName,
           status: `${res.status_message}`,
-          message: res.data,
+          message: returnVal(res),
         });
+      return returnVal(res) || null;
     };
     Proton._LOG({
       event: "Proton SDK initialization",
@@ -110,14 +116,14 @@ class Proton {
     });
   }
   // methods
-  getRecommendation({ type = "", productId = null }) {
+  async getRecommendation({ type = "", productId = null }) {
     const paramObj = {
       customer_id: this.customerId,
       count: this.fetchCount,
       user_id: this.userId,
       product_id: productId,
     };
-    this.request({
+    const res = await this.request({
       url: `${this.baseURL}${
         Proton._ENDPOINTS.PRODUCTS
       }/${type}?${new URLSearchParams(paramObj).toString()}`,
@@ -126,16 +132,16 @@ class Proton {
         body: paramObj, // use just for log
       },
       eventName: `Get recommendation - ${type}`,
+      returnVal: (res) => res.data,
     });
+    return res;
   }
   trackProduct(data) {
     this.request({
       url: `${this.baseURL}${Proton._ENDPOINTS.TRACK}`,
       requestOptions: {
         method: "POST",
-        body: {
-          ...data,
-        },
+        body: data,
       },
       eventName: `Track ${data.event}`,
     });
