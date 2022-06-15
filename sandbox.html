@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <div id="container"></div>
     <script src="dist/proton-web-sdk-dev.js"></script>
     <script src="config.dev.js"></script>
     <script>
@@ -22,12 +23,12 @@
             product_id: "1034",
         });
         // example of track login
-        proton.trackLogin("BobSmith123");
+        // proton.trackLogin("BobSmith123");
         // example of get recommendation products
-        proton.getRecommendation({
-            type: modelTypes.SIMILAR,
-            productId: "1-35043-34174",
-        });
+        // proton.getRecommendation({
+        //     type: modelTypes.SIMILAR,
+        //     productId: "1-35043-34174",
+        // });
     </script>
 </body>
 
