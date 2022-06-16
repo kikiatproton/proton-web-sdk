@@ -6,13 +6,14 @@ import postcss from 'rollup-plugin-postcss';
 import json from '@rollup/plugin-json';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
-const version = '1.0.0';
+const VERSION = '1.0.1';
+
 export default {
   input: 'src/main.js',
   output: {
     file:
       process.env.NODE_ENV === 'prod'
-        ? `dist/proton-web-sdk-${version}.js`
+        ? `dist/proton-web-sdk-${VERSION}.js`
         : `dist/proton-web-sdk-dev.js`,
     format: 'iife',
   },

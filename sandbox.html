@@ -15,15 +15,15 @@
     <script>
         // attch instance to window
         window.proton = new Proton(config);
-        const { trackEventTypes, modelTypes } = window.proton;
+        window.trackQueue = {};
         // example of track product
         proton.trackProduct({
-            event: trackEventTypes.PRODUCT_CLICK,
-            model: modelTypes.RECENT,
+            event: proton.trackEventTypes.PRODUCT_CLICK,
+            model: proton.modelTypes.SIMILAR,
             product_id: "1034",
         });
         // example of track login
-        // proton.trackLogin("BobSmith123");
+        proton.trackLogin("BobSmith123");
         // example of get recommendation products
         // proton.getRecommendation({
         //     type: modelTypes.SIMILAR,

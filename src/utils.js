@@ -19,3 +19,11 @@ export const request = ({ url, requestOptions }) => {
       return null;
     });
 };
+
+export const log = ({ event, status = '', message = '' }) => {
+  console.log(
+    `%c[Proton] ${event}${!status ? '' : ' | ' + status}\n`,
+    'color:blue;font-weight:bold',
+    message,
+  );
+};
